@@ -5,9 +5,9 @@ import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 
 # --- 配置参数 (请根据实际情况修改) ---
-MODEL_PATH = "D:\\python\\vosk-model-small-en-us-0.15" # 改成你的模型路径
+MODEL_PATH = "D:\\浏览器下载\\Edg\\model"  # 改成你的模型路径
 SAMPLE_RATE = 16000  # 采样率 (Hz)
-BLOCK_SIZE = 20000    # 每次处理的音频块大小 (帧)
+BLOCK_SIZE = 8000    # 每次处理的音频块大小 (帧)
 CHANNELS = 1         # 单声道
 
 # --- 初始化 Vosk ---
@@ -20,7 +20,7 @@ except Exception as e:
 
 # 2. 创建识别器
 rec = KaldiRecognizer(model, SAMPLE_RATE)
-rec.SetWords(False)  # 设置为 False 可以减少资源消耗，如果不需要单个词的时间戳
+rec.SetWords(True)  # 设置为 False 可以减少资源消耗，如果不需要单个词的时间戳
 # 若要获得单个词级别结果，可设置为 True: rec.SetWords(True)
 
 # 3. 创建音频队列 (用于解耦音频采集与识别)
